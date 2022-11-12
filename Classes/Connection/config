@@ -1,0 +1,9 @@
+{
+    "connection":{
+        "server" : "localhost",
+        "user"   : "root",
+        "password": "QEMU.HW998",
+        "database": "TEXTC",
+        "port":"3306"
+    }
+}
