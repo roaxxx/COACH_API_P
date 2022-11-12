@@ -17,7 +17,7 @@ class Connection{
             $this->database = $value['database'];
             $this->port = $value['port'];
         }
-        $this->conexion = new mysqli($this->server,$this->user,$this->password,$this->database,$this->port);
+        $this->connection = new mysqli($this->server,$this->user,$this->password,$this->database,$this->port);
         if($this->connection->connect_errno){
             echo "Algo ha salido mal con la conexión";
             die;
@@ -35,7 +35,7 @@ class Connection{
                 $item = utf8_encode($item);
             }
         });
-        return json_encode($array);
+        return json_encode($array); 
     }
     public function getDBInfo($sqlstr){
          $results= $this ->connection ->query($sqlstr);
