@@ -39,11 +39,14 @@ class Connection{
     }
     public function getDBInfo($sqlstr){
          $results= $this ->connection ->query($sqlstr);
-         $resultArray = array();
-         foreach ($results as $key){
-            $resultArray[] = $key;
+         if($this ->connection->affected_rows>0){
+            while($row=$results->fetch_assoc()){
+                $array=$row;
+            }
+            return $this -> changeFormat($array);
+         }else{
+             return $this -> changeFormat(null);
          }
-         return $this -> changeFormat($resultArray);
     }
 }
 ?>
