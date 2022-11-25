@@ -1,5 +1,5 @@
 <?php
-class CostCenter{
+class Company{
     //Atributos
     private $server;
     private $user;
@@ -10,11 +10,11 @@ class CostCenter{
     //Método constructor
     function __construct($dataList){
         foreach ($dataList as $key =>$value){
-            $this->server = $value['address'];
-            $this->user = $value['user'];
+            $this->server = $value['ip_servidor'];
+            $this->user = $value['usuario'];
             $this->password = $value['password'];
-            $this->database = $value['DBName'];
-            $this->port = $value['port'];
+            $this->database = $value['pool_empresa'];
+            $this->port = "3306";
         }
         $this->connection = new mysqli($this->server,$this->user,$this->password,$this->database,$this->port);
         if($this->connection->connect_errno){
@@ -22,15 +22,7 @@ class CostCenter{
             die;
         }
     }
-    private function changeFormat($array){
-        array_walk_recursive($array,function(&$item,$key){
-            if(!mb_detect_encoding($item,"utf-8",true)){
-                $item = utf8_encode($item);
-            }
-        });
-        return json_encode($array); 
-    }
-    public function getCostCenters($sqlstr){
+    public function getDataList($sqlstr){
          $results= $this ->connection ->query($sqlstr);
          if($this ->connection->affected_rows>0){
             $json = "{\"data\":[";
