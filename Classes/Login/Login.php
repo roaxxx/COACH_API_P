@@ -5,7 +5,8 @@
         $con = new Connection;
         $query = $_POST['address'];
         $table = $_POST['table'];
-        $query2 = $con->getDBinfo("SELECT * FROM DB WHERE address ='".$query."'");
+        $query2 = $con->getDBParameters("SELECT u.usuario, nombre_empresa, pool_empresa, password, ip_servidor FROM EMPRESA e JOIN USUARIO u ON e.usuario = u.usuario and ip_servidor ='".$address."'");
+        print_r ($query2);
         $con2 = new CostCenter($query2);
         if($table==1){
             echo $con2->getCostCenters("SELECT * FROM CENTRO_COSTO");

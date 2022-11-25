@@ -23,7 +23,6 @@ class Connection{
             die;
         }
     }
-
     private function dataConnection(){
         $address = dirname(__FILE__);
         $jsonData = file_get_contents($address."/"."config");
@@ -42,14 +41,11 @@ class Connection{
    }
     public function getDBParameters($sqlstr){
         $results= $this ->connection ->query($sqlstr);
-        if($this ->connection ->affected_rows>0){
-            while($row=$results->fetch_assoc()){
-                $array = $row;
-            }
-            return "La conexión ha sido exitosa";
-        }else{
-            return "No ha sido posible conectar";
+        $resultArray = array();
+        foreach ($results as $key){
+            $resultArray[] = $key;
         }
+        return $resultArray;
    }
 }
 ?>
