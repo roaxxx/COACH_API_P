@@ -7,10 +7,10 @@ class Connection{
     private $database;
     private $port;
     private $connection;
-    //Método constructor
+    //Constructor
     function __construct(){
         $dataList = $this->dataConnection();
-        foreach ($dataList as $key =>$value){
+        foreach ($dataList as $key => $value){
             $this->server = $value['server'];
             $this->user = $value['user'];
             $this->password = $value['password'];
@@ -29,24 +29,27 @@ class Connection{
         $jsonData = file_get_contents($address."/"."config");
         return json_decode($jsonData,true);
     }
-    private function changeFormat($array){
-        array_walk_recursive($array,function(&$item,$key){
-            if(!mb_detect_encoding($item,"utf-8",true)){
-                $item = utf8_encode($item);
-            }
-        });
-        return json_encode($array); 
-    }
     public function getDBInfo($sqlstr){
-         $results= $this ->connection ->query($sqlstr);
-         if($this ->connection->affected_rows>0){
+        $results= $this ->connection ->query($sqlstr);
+        if($this ->connection ->affected_rows>0){
             while($row=$results->fetch_assoc()){
-                $array=$row;
+                $array = $row;
             }
-            return $this -> changeFormat($array);
-         }else{
-             return $this -> changeFormat(null);
-         }
-    }
+            return "La conexión ha sido exitosa";
+        }else{
+            return "No ha sido posible conectar";
+        }
+   }
+    public function getDBParameters($sqlstr){
+        $results= $this ->connection ->query($sqlstr);
+        if($this ->connection ->affected_rows>0){
+            while($row=$results->fetch_assoc()){
+                $array = $row;
+            }
+            return "La conexión ha sido exitosa";
+        }else{
+            return "No ha sido posible conectar";
+        }
+   }
 }
 ?>

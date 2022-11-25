@@ -2,12 +2,7 @@
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         require_once "Classes/Connection/Connection.php";
         $con = new Connection;
-        $query = $_POST['address'];
-        $action = $_POST['action'];
-        if($action==0){
-            echo ($con->getDBinfo("SELECT * FROM DB WHERE address ='".$query."'"));
-        }else{
-            echo (json_decode(($con->getDBinfo("SELECT * FROM DB WHERE address ='".$query."'")),true));
-        }
+        $address = $_POST['address'];
+        echo ($con->getDBinfo("SELECT u.usuario, nombre_empresa, pool_empresa, password, ip_servidor FROM EMPRESA e JOIN USUARIO u ON e.usuario = u.usuario and ip_servidor ='".$address."'"));
     }
 ?>

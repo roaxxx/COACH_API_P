@@ -3,7 +3,7 @@
         "server" : "localhost",
         "user"   : "root",
         "password": "QEMU.HW998",
-        "database": "TEXTC",
+        "database": "coach_clientes",
         "port":"3306"
     }
 }
