@@ -22,6 +22,7 @@ class Company{
             die;
         }
     }
+    //Función para retornar varios datos de una tabla.
     public function getDataList($sqlstr){
          $results= $this ->connection ->query($sqlstr);
          if($this ->connection->affected_rows>0){
@@ -34,6 +35,16 @@ class Company{
             $json=$json."]}";
             return $json;
         }
+    }
+    public function addClient($slqStamtement){
+        return  $result =$this -> connection ->query($slqStamtement);   
+    }
+    public function addContacDetails($idClient,$type,$value,$user){
+       $result =$this -> connection ->query(
+       "INSERT INTO DATOS_CONTACTO 
+       (codigo_pertenece,tipo_dato,valor_dato,tipo_uso,usuario_insercion,fecha_insercion,fecha_modificacion)
+       VALUES
+       ((SELECT id_persona FROM PERSONA WHERE id_persona ='".$idClient."'),'".$type."','".$value."','P','".$user."',current_timestamp(),current_timestamp())");   
     }
 }
 ?>
