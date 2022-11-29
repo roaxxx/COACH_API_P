@@ -34,7 +34,7 @@ class Connection{
             while($row=$results->fetch_assoc()){
                 $array = $row;
             }
-            return "La conexión ha sido exitosa";
+            return json_encode($array);
         }else{
             return "No ha sido posible conectar";
         }

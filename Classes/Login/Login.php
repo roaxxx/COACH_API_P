@@ -5,11 +5,11 @@
 
         $con = new Connection;
 
-        $address = $_POST['address'];
+        $poolCompany = $_POST['poolCompany'];
         $table = $_POST['table'];
 
-        $query2 = $con->getDBParameters("SELECT u.usuario, nombre_empresa, pool_empresa, password, ip_servidor FROM EMPRESA e JOIN USUARIO u ON e.usuario = u.usuario and ip_servidor ='".$address."'");
-
+        $query2 = $con->getDBParameters("SELECT u.usuario, nombre_empresa, pool_empresa, password, ip_servidor FROM EMPRESA e JOIN USUARIO u ON e.usuario = u.usuario and pool_empresa ='".$poolCompany."'");
+        print_r($query2);
         $con2 = new Company($query2);
         if($table==1){
             echo $con2->getDataList("SELECT nombre FROM CENTRO_COSTO");

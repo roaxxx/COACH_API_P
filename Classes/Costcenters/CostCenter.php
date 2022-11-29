@@ -37,7 +37,7 @@ class Company{
         }
     }
     public function addClient($slqStamtement){
-        return  $result =$this -> connection ->query($slqStamtement);   
+        return $this -> connection ->query($slqStamtement);   
     }
     public function addContacDetails($idClient,$type,$value,$user){
        $result =$this -> connection ->query(
