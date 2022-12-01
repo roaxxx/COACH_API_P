@@ -17,11 +17,13 @@ class Company{
             $this->port = "3306";
         }
         $this->connection = new mysqli($this->server,$this->user,$this->password,$this->database,$this->port);
+        $this->connection->set_charset("utf8");
         if($this->connection->connect_errno){
             echo "Algo ha salido mal con la conexión";
             die;
         }
     }
+
     //Función para retornar varios datos de una tabla.
     public function getDataList($sqlstr){
          $results= $this ->connection ->query($sqlstr);
