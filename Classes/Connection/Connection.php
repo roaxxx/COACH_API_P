@@ -34,7 +34,7 @@ class Connection{
             while($row=$results->fetch_assoc()){
                 $array = $row;
             }
-            return json_encode($array);
+            return $array['pool_empresa'];
         }else{
             return "No ha sido posible conectar";
         }
