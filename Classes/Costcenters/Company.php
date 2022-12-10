@@ -56,7 +56,7 @@ class Company{
             }
             return $array['ubicacion'];
         }else{
-            return "1101";
+            return "0";
         }
      }
 }
