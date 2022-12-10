@@ -48,5 +48,16 @@ class Company{
        VALUES
        ((SELECT id_persona FROM PERSONA WHERE id_persona ='".$idClient."'),'".$type."','".$value."','P','".$user."',current_timestamp(),current_timestamp())");   
     }
+    public function getLocation(){
+        $results= $this ->connection ->query("SELECT ubicacion FROM EMPRESA;");
+        if($this ->connection ->affected_rows>0){
+            while($row=$results->fetch_assoc()){
+                $array = $row;
+            }
+            return $array['ubicacion'];
+        }else{
+            return "1101";
+        }
+     }
 }
 ?>
