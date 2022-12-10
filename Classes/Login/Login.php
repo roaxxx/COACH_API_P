@@ -15,7 +15,7 @@
         }else if($table==2){
             echo $con2->getDataList("SELECT id_persona as id, nombre as name FROM persona where rol ='cliente'");
         }else if($table==3){
-            echo $con2->getDataList("SELECT nombre,usuario,password FROM NOMINA JOIN PERSONA ON persona = id_persona AND ROL = 'Empleado' AND usuario != '' AND password != ''");
+            echo $con2->getDataList("SELECT id_persona as id,nombre as name,usuario as user,password as passw FROM NOMINA JOIN PERSONA ON persona = id_persona AND ROL = 'Empleado' AND usuario != '' AND password != ''");
         }
     }
 ?>
