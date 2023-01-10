@@ -25,10 +25,10 @@ class Company{
     }
 
     //Función para retornar varios datos de una tabla.
-    public function getDataList($sqlstr){
+    public function getDataList($sqlstr,$arrayName){
          $results= $this ->connection ->query($sqlstr);
          if($this ->connection->affected_rows>0){
-            $json = "{\"data\":[";
+            $json = "{\"$arrayName\":[";
             while($row=$results->fetch_assoc()){
                 $json=$json.json_encode($row);
                 $json=$json.",";

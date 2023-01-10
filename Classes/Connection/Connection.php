@@ -7,6 +7,7 @@ class Connection{
     private $database;
     private $port;
     private $connection;
+    private $queryDB;
     //Constructor
     function __construct(){
         $dataList = $this->dataConnection();
@@ -22,6 +23,7 @@ class Connection{
             echo "Algo ha salido mal con la conexión";
             die;
         }
+         
     }
     private function dataConnection(){
         $address = dirname(__FILE__);
@@ -39,8 +41,11 @@ class Connection{
             return "No ha sido posible conectar";
         }
    }
-    public function getDBParameters($sqlstr){
-        $results= $this ->connection ->query($sqlstr);
+    public function getDBParameters($pool){
+
+        $queryDB = "SELECT u.usuario, nombre_empresa, pool_empresa, password, ip_servidor FROM EMPRESA e JOIN USUARIO u ON e.usuario = u.usuario and pool_empresa ='".$pool."'";
+
+        $results= $this ->connection ->query($queryDB);
         $resultArray = array();
         foreach ($results as $key){
             $resultArray[] = $key;
